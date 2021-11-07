@@ -1,0 +1,171 @@
+<html>
+ <head>
+  <title>cafe-inside</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=353eb5a66d1379195f234bce53b3587a"></script>
+ </head>
+ <body>
+  <div class="container">
+  <div class="row">
+   <h3 align="center">원하는 위치를 검색하세요!</h3>
+   <!--******************지도 코드 추가 부분**************************-->
+   <div id="map" style="width:97%; height:300px;"></div>
+   <!--***************************여기 위에 까지 지도 코드 추가**************************-->
+    <div >
+      <input type='text' id='search' class="form-control" style="width:40%;" placeholder="ex) 충청북도 청주시 서원구 예체로 5" >
+      <button  id='but_search'  class="btn btn-default" onclick="change_latlng();">search</button><br/>
+  </div>
+    <!-- Image loader -->
+    <div id='loader' style='display: none;'>
+       <b>Loading..</b>
+    </div>
+    <br/>
+    <!-- Image loader -->
+    <div class='response'></div>
+    <div id="map"></div>
+   </div>
+  </div>
+<!--******************지도 코드 추가 부분**************************-->
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=353eb5a66d1379195f234bce53b3587a"></script>
+<script>
+  var lat=33.450701;
+  var lng=126.570667;
+  var name;
+  function change_latlng(){ //버튼 클릭되면,
+    name = document.getElementById('search').value;
+    if (name=="충북 청주시" ){
+            lat=36.69310474477381;
+            lng=127.46431259975854;
+        } else if(name=="충북 청주시 서원구"){
+            lat=36.61860594056915;
+            lng=127.45529449070057;
+        } else if(name=="성화동"){
+            lat= 36.61860594056915;
+            lng=127.45529449070057;
+        } else if(name=="세종"){
+            lat=36.48;
+            lng=127.29;
+        }
+
+
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+    mapOption = { 
+        center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 
+// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+var positions = [
+    
+    {
+        content: '<div>이디야커피 청주성화동점</div>',
+        latlng: new kakao.maps.LatLng(36.62003023815879, 127.45529856266398)
+    },
+    {
+        content: '<div>충북낙농농협 성화지점</div>',
+        latlng: new kakao.maps.LatLng(36.61911184578222, 127.45487227022576)
+    },
+    {
+        content: '<div>럭셔리헤어</div>',
+        latlng: new kakao.maps.LatLng(36.61879744602408, 127.45493545369682)
+    },
+    {
+        content: '<div>응응스크르 청주성화점</div>',
+        latlng: new kakao.maps.LatLng(36.61876690274105, 127.47575289849816)
+    }
+];
+
+for (var i = 0; i < positions.length; i ++) {
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng // 마커의 위치
+    });
+
+    // 마커에 표시할 인포윈도우를 생성합니다 
+    var infowindow = new kakao.maps.InfoWindow({
+        content: positions[i].content // 인포윈도우에 표시할 내용
+    });
+
+    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+}
+
+// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+function makeOverListener(map, marker, infowindow) {
+    return function() {
+        infowindow.open(map, marker);
+    };
+}
+
+// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+function makeOutListener(infowindow) {
+    return function() {
+        infowindow.close();
+    };
+}
+  }
+  
+    
+  
+ 
+</script>
+<!--***************************여기 위에 까지 지도 코드 추가**************************-->
+  <script type='text/javascript'>
+ 
+    $(document).ready(function(){
+  
+    $("#but_search").click(function(){
+      var search = $('#search').val();
+ 
+      $.ajax({
+      url: '/fetchdeta',
+      type: 'post',
+      data: {search:search},
+      beforeSend: function(){
+        // Show image container
+        $("#loader").show();
+      },
+      success: function(response){
+        $('.response').empty();
+        $('.response').append(response.htmlresponse);
+      },
+      complete:function(data){
+        // Hide image container
+        $("#loader").hide();
+      }
+      });
+  
+    });
+    });
+  </script>
+
+\
+<style>
+.post{
+    width: 97%;
+    min-height: 200px;
+    padding: 5px;
+    border: 1px solid gray;
+    margin-bottom: 15px;
+}
+.post h1{
+    letter-spacing: 1px;
+    font-weight: normal;
+    font-family: sans-serif;
+}
+.post p{
+    letter-spacing: 1px;
+    text-overflow: ellipsis;
+    line-height: 25px;
+}
+</style>
+
+ </body>
+</html>

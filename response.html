@@ -1,0 +1,9 @@
+{% for row in postslist %}
+<div class="post" id="post_{{row.id}}">
+<h1>{{row.title}}</h1>
+<p>{{row.locate}}</p>
+<p>#{{row.keyword1}} #{{row.keyword2}}  #{{row.keyword3}}</p>
+<p>{{row.phone}}</p>
+<a href="{{row.link}}" class="more" target="_blank">More</a>
+</div>
+{% endfor %}

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <meta charset="utf-8">
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v5.3.10, mobirise.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="shortcut icon" href="static/assets/images/logo-147x145.jpg" type="image/x-icon">
+    <meta name="description" content="">
+  
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- <script src="{{ url_for('static',filename='result.js')}}"></script> -->
+    <title>그래프</title>
+    <link rel="stylesheet" href="assets/tether/tether.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/formstyler/jquery.formstyler.css">
+    <link rel="stylesheet" href="assets/formstyler/jquery.formstyler.theme.css">
+    <link rel="stylesheet" href="assets/datepicker/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/theme/css/style.css">
+    <link href="assets/fonts/style.css" rel="stylesheet">
+    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+    <link rel="stylesheet" href="{{url_for('static', filename='tether1/tether.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap1/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap1/css/bootstrap-grid.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap1/css/bootstrap-reboot.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='formstyle1/jquery.formstyler.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='formstyler1/jquery.formstyler.theme.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='datepicker1/jquery.datetimepicker.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='theme1/css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts1/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='mobirise1/css/mbr-additional.css')}}">
+    <link href="static/fonts/style.css" rel="stylesheet">
+    <link rel="preload" as="style" href="static/mobirise1/css/mbr-additional.css">
+    <link rel="stylesheet" href="static/mobirise1/css/mbr-additional.css" type="text/css">
+    </head>
+
+    <style>
+    
+    .selectBox2 {
+    position: relative;
+    width: 150px;
+    height: 35px;
+    border-radius: 4px;
+    border: 2px solid lightcoral;
+    background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 7px) center no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+    }
+
+
+     #wrapper{
+        
+        margin:50px;
+       
+    }
+
+   
+
+    section{
+        margin:auto;
+        padding:80px;
+        background-color:#F7F8E0;
+    }
+
+    div.col-lg-12{
+        padding:1px
+    }
+
+    div{
+        margin:auto;
+        background-color:#F7F8E0;
+    }
+
+  
+
+    div.button{
+        
+        display:block;
+        width:100px;
+        padding:10px;
+        
+        
+    }
+
+    
+     .color-bg-start {
+    background-color: salmon;
+    }
+   
+
+
+/* toggle class bg-animate-color */
+
+    
+
+
+/* add animation to bg color  */
+
+    @keyframes random-bg {
+     from {
+     filter: hue-rotate(0);
+    }
+    to {
+     filter: hue-rotate(360deg);
+    }
+    }
+
+    .fun-btn {
+  /* change bg color to get different hues    */
+    background-color: #ffe161;
+    color: white;
+    padding: 1em 3em;
+    border: none;
+    transition: all .3s ease;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    outline: none;
+    align-self: center;
+    cursor: pointer;
+    font-weight: bold;
+    
+    width:300px;
+    margin:auto;
+    display:block;
+    }
+
+.fun-btn:hover {
+  animation:  .5s linear infinite, grow 1300ms ease infinite;
+}
+
+.start-fun {
+  background-color: #fff !important;
+  /* change color of button text when fun is started   */
+  color: salmon !important;
+}
+
+/* pulsating effect on button */
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+    </style>
+    
+         <!--제이쿼리 적용방법 3 -->
+<script>
+$('.fun-btn').on('click', function(event) {
+  $(this).toggleClass('start-fun');
+  var $page = $('.page');
+  $page.toggleClass('color-bg-start')
+    .toggleClass('bg-animate-color');
+
+  //change text when when button is clicked
+
+  $(this).hasClass('start-fun') ?
+    $(this).text('stop the fun') :
+    $(this).text('start the fun');
+
+});
+
+
+  $(document).ready(function(){
+    var area={
+      "0" : "-------",
+       "R" : "전통시장",
+       "A" : "골목상권",
+       "D" : "발달상권",
+       "U" : "관광특구"
+    };
+     var detail_area_0={
+       "0" : "-------"
+     };
+           
+     //전통시장
+    var detail_area_R={
+      "0" : "-------",
+      "1001419" :"가리봉시장",
+      "1001369":"갈현시장",
+      "1001475" : "강남개포시장",
+      "1001462" : "강남골목시장",
+      "1001470" : "강남시장_강남",
+      "1001443" : "강남시장_동작",
+      "1001355" : "강북종합시장",
+      "1001421" : "개봉중앙시장",
+      "1001314" : "경동시장",
+      "1001399" : "경창시장",
+      "1000568" : "개화동로25길",
+      "1001420" : "고척근린시장",
+      "1001490" : "길동복조리시장",
+      "1001273" : "남대문시장",
+      "1001450" : "남성역골목시장",
+      "1001426" : "대명시장",
+      "1001481" : "명일골목시장",
+      "1001479" : "석촌시장",
+      "1001488" : "성내골목시장",
+      "1001386" : "신수시장",
+      "1001402" : "신월6동골목시장",
+      "1001483" : "암사종합시장",
+      "1001484" : "양지골목시장",
+      "1001370" : "역촌중앙시장",
+      "1001471" : "영동전통시장",
+      "1001452" : "중부시장",
+      "1001412" : "화곡본동시장",
+      "1001409" : "화곡중앙골목식당",
+      "1001300" : "화장제일골목시장",
+      "1001326" : "회기시장",
+      "1001286" : "후암시장",
+      "1001448" : "흑석시장",
+      
+      
+      
+
+    };
+            //골목상권
+    var detail_area_A ={
+              "0" : "-------",
+              "1000507" : "가로공원로58길",
+              "1000552" : "가로공원로76가길",
+              "1000553" : "가로공원로80길",
+              "1000683" : "가마산로61길",
+              "1000654" : "가산로3길",
+              "1000655" : "가산로5길",
+              "1000435" : "가재울로6길",
+              "1000389" : "가좌로7길",
+              "1000390" : "갈현로1길",
+              "1000391" : "갈현로33길",
+              "1000392" : "갈현로41길",
+              "1000393" : "갈현로7길",
+              "1000886" : "강남대로118길",
+              "1000887" : "강남대로136길",
+              "1000888" : "강남대로140길",
+              "1000844" : "강남대로23길",
+              "1000845" : "강남대로34길",
+              "1000846" : "강남대로8길",
+              "1000967" : "강동대로53길",
+              "1000554" : "강서로15길",
+              "1000555" : "강서로17가길",
+              "1000556" : "강서로18길",
+              "1000557" : "강서로29길",
+              "1000558" : "강서로35길",
+              "1000559" : "강서로45길",
+              "1000560" : "강서로45다길",
+              "1000561" : "강서로47길",
+              "1000562" : "강서로47라길",
+              "1000563" : "강서로5가길",
+              "1000564" : "강서로5나길",
+              "1000565" : "강서로5라길",
+              "1000566" : "강서로8길",
+              "1000609" : "개봉로11길",
+              "1000610" : "개봉로17길",
+              "1000611" : "개봉로17다길",
+              "1000612" : "개봉로1길",
+              "1000613" : "개봉로20길",
+              "1000614" : "개봉로23가길",
+              "1000615" : "개봉로2길",
+              "1000616" : "개봉로3길",
+              "1000291" : "개운사길",
+              "1000889" : "개포로17길",
+              "1000890" : "개포로20길",
+              "1000891" : "개포로28길",
+              "1000892" : "개포로82길",
+              "1000567" : "개화동로23길",
+              "1000568" : "개화동로25길",
+              "1000940" : "거마로20길",
+              "1000222" : "겸재로29길",
+              "1000223" : "겸재로36길",
+              "1000224" : "겸재로54길",
+              "1000617" : "경인로15길",
+              "1000618" : "경인로31길",
+              "1000619" : "경인로35길",
+              "1000620" : "경인로47길",
+              "1000684" : "경인로77길",
+              "1000685" : "경인로80길",
+              "1000686" : "경인로90길",
+              "1000168" : "경희대로3길",
+              "1000854" :  "동광로1길",
+              "1000838" : "호암로20길",
+              "1000839" : "호암로24길",
+              "1000456" : "홍연길",
+              "1000457" : "홍제내길",
+              "1000603" : "화곡로13길",
+              "1000604" : "화곡로20길",
+              "1000605" : "화곡로31길",
+              "1000550" : "화곡로3길",
+              "1000606":  "화곡로44나길",
+              "1000551" : "화곡로4길",
+              "1000607" : "화곡로59길",
+              "1000608" : "화곡로64길",
+              "1000309" : "화랑로13길",
+              "1000310" : "화랑로14길",
+              "1000311" : "화랑로19길",
+              "1000312" : "화랑로1길",
+              "1000313" : "화랑로32길",
+              "1000314" : "화랑로40길",
+              "1000085" : "회나무로13길",
+              "1000880" : "효령로23길",
+              "1000881" : "효령로31길",
+              "1000882" : "효령로34길",
+              "1000883" : "효령로72길",
+              "1000086" : "효창원로39길",
+              "1000506" : "효창원로93길",
+              "1000087" : "후암로28길",
+              "1000218" : "휘경로14길",
+              "1000219" : "휘경로23길",
+              "1000220" : "휘경로2길",
+              "1000221" : "휘경로3길",
+              "1000778" : "흑설로13길",
+              "1000779" : "흑석로9길"
+             
+
+    };
+
+            //발달상권
+    var detail_area_D={
+              "0" : "-------",
+              "1001060" : "가락시장",
+              "1001021" : "가산디지털단지역_1",
+              "1001023" : "가산디지털단지역_2",
+              "1001027" : "가산디지털단지역_3",
+              "1001092" : "강남구 논현역_1",
+              "1001095" : "강남구 논현역_2",
+              "1001100" : "강남구 논현역_3",
+              "1001109" : "강남구 논현역_4",
+              "1001114" : "강남구 신사역_1",
+              "1001117" : "강남구 신사역_2",
+              "1001179" : "강서구청",     
+              "1001049" : "개봉동 현대아파트 인근",           
+              "1001161" : "건대입구역",
+              "1001253":"서울 은평구 연신내역_1", 
+              "1001234":"서울 종로구 경복궁역_1",
+              "1001215":"서울 종로구 광화문역_1",
+              "1001219":"서울 종로구 동대문역_1",
+              "1001189":"서울 중구 명동역",
+              "1001192":"서울 중구 충무로역_1",
+              "1001180":"신촌역",
+              "1001138":"압구정 로데오거리_1",
+              "1001110":"잠실역",
+              "1001097":"잠실역 롯데월드",
+              "1001241" : "혜화역 대학로_2",
+              "1001242" : "혜화역 대학로_3",
+              "1001182" : "홍익대학교 주변",
+    };
+
+            //관광특구
+     var detail_area_U={
+              "0" : "-------",
+              "1001496" : "강남 마이스 관광특구",
+              "1001493":"동대문패션타운 관광특구",
+              "1001492":"명동 남대문 북창동 다동 무교동 관광특구",
+              "1001491":"이태원 관광특구",
+              "1001495":"잠실 관광특구",
+              "1001494":"종로·청계 관광특구"
+
+    };
+
+    function retOption(mapArr, select){
+      var html = '';
+      var keys = Object.keys(mapArr);
+      for(var i in keys){
+        html +=  "<option value=" + "'" + keys[i] + "'>" + mapArr[keys[i]] + "</option>";
+      }
+      $("select[id='" + select +"']").html(html);
+    }
+
+    $("select[id='area']").on("change", function(){
+    	    var option = $("#area option:selected").val();
+            var subSelName = '';
+    	    if(option == "0") {
+        	    subSelName = "detail_area_0";
+            } else if(option == "R"){
+        	    subSelName = "detail_area_R";
+            } else if(option == "A"){
+        	    subSelName = "detail_area_A";
+            }else if(option == "D"){
+        	    subSelName = "detail_area_D";
+            }else if(option == "U"){
+        	    subSelName = "detail_area_U";
+            }else{
+        	    $("#detail_area").hide();
+        	    return;
+            }
+            $("#detail_area").show();
+            retOption(eval(subSelName), "detail_area");
+        })
+      retOption(area, "area");
+  });
+
+      
+        
+
+</script>     
+    <form action=" " method="POST">
+    
+<section class="form9 cid-sN1rvO32U9" id="form9-26">
+    
+        <div id="teduri">
+        <section>
+        
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>상권 분석을 원하시나요?</strong>
+            </h3>
+        </section>  
+        
+        <div class="col-lg-12">
+                <h2 class="mbr-text mbr-fonts-style align-center mb-4 display-7">원하는 조건에 맞게 선택해 주세요 !</h2>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+                    <div class="dragArea row">
+                        
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">분기</label>
+
+                                <select  id="quarter" name="quarter"  class="btn btn-white display-4">
+                          <option value="0">--</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                      </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">상권</label>
+
+                               <select  id="area" name="area" class="btn btn-white display-4">
+                      </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">위치</label>
+
+                                <select  id="detail_area" name="detail_area"  class="btn btn-white display-4">
+                                <option value="0">-------------</option>
+                      </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">업종</label>
+                                
+                                <select  id="sector" name="sector" class="btn btn-white display-4">
+                                     <option value="0">-----------</option>
+                                    <option value="CS200019">PC방</option>
+                                    <option value="CS300031">가구</option>
+                                    <option value="CS300015">가방</option>
+                                    <option value="CS300032">가전제품</option>
+                                    <option value="CS200032">가전제품수리</option>
+                                    <option value="CS200036">고시원</option>
+                                    <option value="CS200017">골프연습장</option>
+                                    <option value="CS200029">네일숍</option>
+                                    <option value="CS200037">노래방</option>
+                                    <option value="CS200016">당구장</option>
+                                    <option value="CS300021">문구</option>
+                                    <option value="CS300006">미곡판매</option>
+                                    <option value="CS200028">미용실</option>
+                                    <option value="CS300010">반찬가게</option>
+                                    <option value="CS200033">부동산중개업</option>
+                                    <option value="CS100008">분식전문점</option>
+                                    <option value="CS300020">서적</option>
+                                    <option value="CS300027">섬유제품</option>
+                                    <option value="CS200031">세탁소</option>
+                                    <option value="CS300008">수산물판매</option>
+                                    <option value="CS300001">슈퍼마켓</option>
+                                    <option value="CS200005">스포츠 강습</option>
+                                    <option value="CS200024">스포츠클럽</option>
+                                    <option value="CS300017">시계및귀금속</option>
+                                    <option value="CS300014">신발</option>
+                                    <option value="CS300016">안경</option>
+                                    <option value="CS300029">애완동물</option>
+                                    <option value="CS100004">양식음식점</option>
+                                    <option value="CS200034">여관</option>
+                                    <option value="CS200003">예술학원</option>
+                                    <option value="CS300026">완구</option>
+                                    <option value="CS200002">외국어학원</option>
+                                    <option value="CS300024">운동/경기용품</option>
+                                    <option value="CS300007">육류판매</option>
+                                    <option value="CS300019">의료기기</option>
+                                    <option value="CS300018">의약품</option>
+                                    <option value="CS300035">인테리어</option>
+                                    <option value="CS200001">일반교습학원</option>
+                                    <option value="CS300011">일반의류</option>
+                                    <option value="CS200006">일반의원</option>
+                                    <option value="CS100003">일식음식점</option>
+                                    <option value="CS200026">자동차미용</option>
+                                    <option value="CS200025">자동차수리</option>
+                                    <option value="CS300025">자전거 및 기타운송장비</option>
+                                    <option value="CS300043">전자상거래업</option>
+                                    <option value="CS100005">제과점</option>
+                                    <option value="CS300036">조명용품</option>
+                                    <option value="CS100002">중국음식점</option>
+                                    <option value="CS300033">철물점</option>
+                                    <option value="CS300009">청과상</option>
+                                    <option value="CS200007">치과의원</option>
+                                    <option value="CS100007">치킨전문점</option>
+                                    <option value="CS100010">커피-음료</option>
+                                    <option value="CS300003">컴퓨터및주변장치판매</option>
+                                    <option value="CS100006">패스트푸드점</option>
+                                    <option value="CS300002">편의점</option>
+                                    <option value="CS200030">피부관리실</option>
+                                    <option value="CS100001">한식음식점</option>
+                                    <option value="CS200008">한의원</option>
+                                    <option value="CS300004">핸드폰</option>
+                                    <option value="CS100009">호프-간이주점</option>
+                                    <option value="CS300022">화장품</option>
+                                    <option value="CS300028">화초</option>
+
+
+
+
+
+
+                      </select>
+                        </div>
+                        
+                        
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="margin">
+        </div>
+        <div id="wrapper">
+                <button type="submit" class="fun-btn" onclick="location.href='result.html'">search</button>
+        </div>
+        </div>
+        </div>
+    </div>
+
+</section>
+</div>
+<section style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;">
+
+</section>
+</html>

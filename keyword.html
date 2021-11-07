@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<title>cafe-inside</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />    
+<link href='https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+</head>
+<body >
+<div class="container" >
+    <div class="row" style="padding:50px;">
+        <p><h1>원하는 키워드를 검색하세요!</h1></p>
+        <p><h3>#아기자기한 #야외석이 있는 #애견동반이 가능한 #주택가에 위치한</h3></p>
+        <div >
+            <table id='empTable' class='display dataTable' width='100%'>
+                <thead>
+                <tr>
+                    <th>cafe name</th>
+                    <th>locate</th>
+                    <th>keyword</th>
+                    <th></th>
+                    <th></th>
+                    <th>phone number</th>
+                    <th>link</th>
+                </tr>
+                </thead>
+                 
+            </table>
+        </div>
+   </div>
+</div>
+<script>
+$(document).ready(function() {
+ 
+  
+    var empDataTable = $('#empTable').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'serverMethod': 'post',
+                'ajax': {
+                    'url':'/ajaxfile'
+                },
+                'lengthMenu': [[10, 15, 25, 50, -1], [10, 15, 25, 50, "All"]],
+                searching: true,
+                sort: false,
+                "serverSide": true,
+                'columns': [
+                    { data: 'title' },
+                    { data: 'locate' },
+                    { data: 'keyword1'},
+                    { data: 'keyword2'},
+                    { data: 'keyword3'},
+                    { data: 'phone' },
+                    { data: 'link' },
+                ]
+            });
+ 
+});
+ 
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <meta charset="utf-8">
+    <head>
+        <title>그래프</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- <script src="{{ url_for('static',filename='result.js')}}"></script> -->
+   
+    <body>
+         <!--제이쿼리 적용방법 3 -->
+      
+        <form action=" " method="POST">
+        <section>
+
+                <h3 class="h3 text-center mb-5">상권 매출 예측하기</h3>
+
+                <div class="row wow fadeIn">
+
+                  <div class="col-lg-6 col-md-12 px-4">
+
+                    <form action="/" method="post" >
+
+                      <div class="form-group">
+
+                        <label for="formGroupExampleInput">분기</label>
+
+                        <select  id="selectBox1" name="quarter"  class="btn btn-white display-4">
+                          <option value="0">--</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                      </select>
+
+                      </div>
+
+                      <div class="form-group">
+
+                        <label for="formGroupExampleInput">상권</label>
+
+                        <select  id="selectBox2" name="area" class="btn btn-white display-4">
+                          <option value="0">-------</option>
+                          <option value="R">전통시장</option>
+                          <option value="A">골목상권</option>
+                          <option value="D">발달상권</option>
+                          <option value="U">관광특구</option>
+                      </select>
+
+                      </div>
+
+                      <div class="form-group">
+
+                        <label for="formGroupExampleInput">위치</label>
+
+                       <select  id="selectBox3" name="detail_area"  class="btn btn-white display-4">
+                          <option value="0">------------</option>
+                          <option value="1001060">가락시장</option>
+                          <option value="1000507">가로공원로58길</option>
+                          <option value="1000552">가로공원로76가길</option>
+                          <option value="1000553">가로공원로80길</option>
+                          <option value="1001419">가리봉시장</option>
+                          <option value="1000683">가마산로61길</option>
+                          <option value="1000566">강서로8길</option>
+                      </select>
+
+                      </div>
+
+                      <div class="form-group">
+
+                        <label for="formGroupExampleInput">업종</label>
+
+                        <select  id="selectBox4" name="sector" class="btn btn-white display-4">
+                          <option value="0">-----------</option>
+                          <option value="CS200019">PC방</option>
+                          <option value="CS300031">가구</option>
+                          <option value="CS300015">가방</option>
+                          <option value="CS300032">가전제품</option>
+                          <option value="CS200032">가전제품수리</option>
+                          <option value="CS200036">고시원</option>
+                          <option value="CS200002">외국어학원</option>
+                      </select>
+
+                      </div>
+                     <button type="submit" class="btn btn-primary btn-md pull-right" onclick="location.href='result.html'">예측하기</button>
+
+                      
+                    </form>
+                  
+              
+                   
+                  </div>
+                 
+        <!--
+                  <div class="col-lg-6 col-md-12">
+                    
+
+                    {% if weekly_price %}
+                      <a class="text-center mt-3">주중 예상 매출은 {{ weekly_price }} 입니다.</a>
+                    {% endif %}
+
+                    {% if weekend_price %}
+                      <h5 class="text-center mt-3">주말 예상 매출은 {{ weekend_price }} 입니다.</h5>
+                    {% endif %}
+                  </div>
+-->
+                </div>
+
+        </section>
+</body>  
+</html>
