@@ -2,7 +2,7 @@
 # Real estate platform using road view and commercial district analysis.
 ![1](https://user-images.githubusercontent.com/62427558/140650944-1d48d67b-b206-41c1-a73a-155d31ea6773.png)
 ![2](https://user-images.githubusercontent.com/62427558/140650989-0e869b78-a2e4-443b-a863-2d89a65c94eb.png)
-![3](https://user-images.githubusercontent.com/62427558/140651003-1cc64454-96a5-4baa-9ede-99d4d5fa8fcb.png)
+![4](https://user-images.githubusercontent.com/62427558/140651314-562a6c1c-43cf-4722-8dfb-1ea0363553a3.png)
 
 ## 1. Search keywords and locations.
 ### You can search using the keywords and locations of the store you are looking for.
